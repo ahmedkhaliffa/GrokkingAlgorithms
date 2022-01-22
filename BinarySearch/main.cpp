@@ -3,26 +3,31 @@
 
 using namespace std;
 
-int SmallestElement(vector<int> arr) {
-    int smallest = arr[0];
-    int smallestIndex = 0;
-    for (int i = 0; i < arr.size(); i++) {
-        if (arr[i] < smallest) {
-            smallest = arr[i];
-            smallestIndex = i;
-        }
-    }
-    return smallestIndex;
-}
-vector<int> SelectionSort(vector<int> arr) {
-    vector<int> SortedArray;
-    for (int i = 0; i < arr.size();)
-    {
-        int index = SmallestElement(arr);
-        SortedArray.push_back(arr[index]);
-        arr.erase(arr.begin() + index);
-    }
+int binary_search(vector<int> arr, int k) {
+	
+	int n = arr.size();
+	int high = n - 1;
+	int low = 0;
+	
 
+	while (low <= high)
+	{
+		int mid = (low + high) / 2;
+	
 
-    return SortedArray;
+		if (arr[mid] == k)
+		{
+			return mid;
+		}
+		if (arr[mid] < k)
+		{
+			low = mid + 1;
+		}
+		else
+		{
+			high = mid - 1;
+		}
+	}
+
+	return -1;
 };
